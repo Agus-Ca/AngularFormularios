@@ -1,1 +1,79 @@
-<p>basicos works!</p>
+<h2>Reactivos: Básicos</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <form autocomplete="off">
+
+            <!-- Campo producto -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Producto</label>
+                <div class="col-sm-9">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Nombre del producto">
+                    <span class="form-text text-danger">
+                        Debe tener al menos 3 letras
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de precio -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Precio</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           placeholder="Precio del producto">
+                    <span class="form-text text-danger">
+                        El precio debe ser mayor o igual a cero
+                    </span>
+                </div>
+            </div>
+
+            <!-- Campo de existencias -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Existencias</label>
+                <div class="col-sm-9">
+                    <input type="number"
+                           class="form-control"
+                           placeholder="Existencias del producto">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary float-end"
+                            type="submit">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<hr>
+
+<!-- <div class="row">
+    <div class="col">
+        <h4>Form props</h4>
+
+        <span>Valid:</span>
+        <pre class="ms-5">{{ miFormulario.valid | json }}</pre>
+
+        <span>Pristine:</span>
+        <pre class="ms-5">{{ miFormulario.pristine | json }}</pre>
+
+        <span>Touched:</span>
+        <pre class="ms-5">{{ miFormulario.touched | json }}</pre>
+        
+        <span>Value:</span>
+        <pre class="ms-5">{{ miFormulario.value | json }}</pre>
+
+        <span>CustomMin:</span>
+        <pre class="ms-5">{{ miFormulario.controls['existencias']?.errors | json }}</pre>
+    </div>
+</div> -->
