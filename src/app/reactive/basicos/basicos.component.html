@@ -4,7 +4,9 @@
 <div class="row">
     <div class="col">
 
-        <form autocomplete="off">
+        <form [formGroup]="miFormulario"
+              autocomplete="off"
+              (ngSubmit)="guardar()">
 
             <!-- Campo producto -->
             <div class="mb-3 row">
@@ -12,8 +14,10 @@
                 <div class="col-sm-9">
                     <input type="text"
                            class="form-control"
-                           placeholder="Nombre del producto">
-                    <span class="form-text text-danger">
+                           placeholder="Nombre del producto"
+                           formControlName="nombre">
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoEsValido('nombre')">
                         Debe tener al menos 3 letras
                     </span>
                 </div>
@@ -25,8 +29,10 @@
                 <div class="col-sm-9">
                     <input type="number"
                            class="form-control"
-                           placeholder="Precio del producto">
-                    <span class="form-text text-danger">
+                           placeholder="Precio del producto"
+                           formControlName="precio">
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoEsValido('precio')">
                         El precio debe ser mayor o igual a cero
                     </span>
                 </div>
@@ -38,7 +44,12 @@
                 <div class="col-sm-9">
                     <input type="number"
                            class="form-control"
-                           placeholder="Existencias del producto">
+                           placeholder="Existencias del producto"
+                           formControlName="existencias">
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoEsValido('existencias')">
+                        las existencias deben ser mayor o igual a cero
+                    </span>
                 </div>
             </div>
 
@@ -57,7 +68,7 @@
 
 <hr>
 
-<!-- <div class="row">
+<div class="row">
     <div class="col">
         <h4>Form props</h4>
 
@@ -72,8 +83,5 @@
         
         <span>Value:</span>
         <pre class="ms-5">{{ miFormulario.value | json }}</pre>
-
-        <span>CustomMin:</span>
-        <pre class="ms-5">{{ miFormulario.controls['existencias']?.errors | json }}</pre>
     </div>
-</div> -->
+</div>
