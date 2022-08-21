@@ -11,9 +11,9 @@
             </label>
             <select class="form-control"
                     formControlName="region">
-            <option value="">
-                -- Seleccione la region --
-            </option>
+                <option value="">
+                    -- Seleccione la region --
+                </option>
                 <option *ngFor="let region of regiones"
                         [value]="region | lowercase">
                     {{ region }}
@@ -26,13 +26,28 @@
             </label>
             <select class="form-control"
                     formControlName="pais">
-            <option value="">
-                -- Seleccione el país --
-            </option>
+                <option value="">
+                    -- Seleccione el país --
+                </option>
                 <option *ngFor="let pais of paises"
                         [value]="pais.alpha3Code">
                     {{ pais.name }}
                 </option>
+            </select>
+
+            <!-- Fronteras -->
+            <label class="form-label mb-3">
+                Paises fronterizos:
+            </label>
+            <select class="form-control"
+                    formControlName="paisFronterizo">
+                <option value="">
+                    -- Seleccione el país fronterizo --
+                </option>
+                <!-- <option *ngFor="let pais of paises"
+                        [value]="pais.alpha3Code">
+                    {{ pais.name }}
+                </option> -->
             </select>
 
             <!-- Boton submit -->

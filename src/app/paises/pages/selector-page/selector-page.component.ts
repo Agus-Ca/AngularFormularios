@@ -36,12 +36,15 @@ export class SelectorPageComponent implements OnInit {
       .pipe(
         tap( ( _ ) => this.miFormulario.get('pais')?.reset('') ),
         switchMap( region => this.paisesService.getPaisesPorRegion( region ) ) )
-      .subscribe( paises => console.log( paises ) );
+      .subscribe( paises => this.paises = paises );
+
+    this.miFormulario.get('pais')?.valueChanges.subscribe( codigo => console.log( codigo ) )
   }
 
   miFormulario:FormGroup = this.formBuilder.group({
-    region: [ '', [ Validators.required ] ],
-    pais  : [ '', [ Validators.required ] ]
+    region:         [ '', [ Validators.required ] ],
+    pais  :         [ '', [ Validators.required ] ],
+    paisFronterizo: [ '', [ Validators.required ] ]
   }); 
 
   // Llenar selectores
