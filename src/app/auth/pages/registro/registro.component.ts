@@ -24,9 +24,13 @@ export class RegistroComponent implements OnInit {
   }
 
   miFormulario: FormGroup = this.formBuilder.group({
-    nombre:   ['', [ Validators.required, Validators.pattern(this.validationService.nombreApellidoPattern) ]],
-    email:    ['', [ Validators.required, Validators.email, Validators.pattern(this.validationService.emailPattern)]],
-    username: ['', [ Validators.required, this.validationService.noPuedeSerAgusCa ]]
+    nombre:    ['', [ Validators.required, Validators.pattern(this.validationService.nombreApellidoPattern) ]],
+    email:     ['', [ Validators.required, Validators.email, Validators.pattern(this.validationService.emailPattern)]],
+    username:  ['', [ Validators.required, this.validationService.noPuedeSerAgusCa ]],
+    password:  ['', [ Validators.required, Validators.minLength(6) ]],
+    password2: ['', [ Validators.required, Validators.minLength(6) ]]
+  }, {
+    validators: [ this.validationService.camposIguales('password', 'password2') ]
   })
 
   campoNoValido( campo:string ) {
