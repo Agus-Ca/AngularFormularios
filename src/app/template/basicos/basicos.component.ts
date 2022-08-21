@@ -27,6 +27,10 @@ export class BasicosComponent {
            && this.miFormulario?.controls['precio']?.value < 0;
   }
 
+  getCampoErrors( campo:string ) {
+    return this.miFormulario?.controls[campo]?.errors;
+  }
+
   guardar() {
     console.log('Posteo correcto');
     this.miFormulario.resetForm({

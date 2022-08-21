@@ -92,6 +92,6 @@
         <pre class="ms-5">{{ miFormulario.value | json }}</pre>
 
         <span>CustomMin:</span>
-        <pre class="ms-5">{{ miFormulario.controls['existencias'].errors | json }}</pre>
+        <pre class="ms-5">{{ getCampoErrors('existencias') | json }}</pre>
     </div>
 </div>
