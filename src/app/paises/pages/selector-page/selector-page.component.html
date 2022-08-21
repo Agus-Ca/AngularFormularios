@@ -11,8 +11,12 @@
             </label>
             <select class="form-control"
                     formControlName="region">
-                <option value="">
-                    -- Seleccione region --
+            <option value="">
+                -- Seleccione region --
+            </option>
+                <option *ngFor="let region of regiones"
+                        [   ]="region | lowercase">
+                    {{ region }}
                 </option>
             </select>
 
