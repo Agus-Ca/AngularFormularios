@@ -34,23 +34,44 @@ export class SelectorPageComponent implements OnInit {
 
     this.miFormulario.get('region')?.valueChanges
       .pipe(
-        tap( ( _ ) => this.miFormulario.get('pais')?.reset('') ),
+        tap( ( _ ) => {
+          this.miFormulario.get('pais')?.reset('');
+          this.cargando = true;
+        } ),
         switchMap( region => this.paisesService.getPaisesPorRegion( region ) ) )
-      .subscribe( paises => this.paises = paises );
+      .subscribe( paises => {
+        this.paises = paises;
+        this.cargando = false;
+      } );
 
-    this.miFormulario.get('pais')?.valueChanges.subscribe( codigo => console.log( codigo ) )
+    this.miFormulario.get('pais')?.valueChanges
+      .pipe(
+        tap( ( _ ) => {
+          this.miFormulario.get('paisesFronterizos')?.reset('');
+          this.cargando = true;
+        }),
+        switchMap( ( codigo ) => this.paisesService.getPaisPorCodigo( codigo ) ),
+        switchMap( pais => this.paisesService.getPaisesPorCodigos( pais?.borders! ) )
+      )
+      .subscribe( paises => {
+        this.paisesFronterizos = paises;
+        this.cargando = false;
+      } );
   }
 
   miFormulario:FormGroup = this.formBuilder.group({
-    region:         [ '', [ Validators.required ] ],
-    pais  :         [ '', [ Validators.required ] ],
-    paisFronterizo: [ '', [ Validators.required ] ]
+    region            : [ '', [ Validators.required ] ],
+    pais              : [ '', [ Validators.required ] ],
+    paisesFronterizos : [ '', [ Validators.required ] ]
   }); 
 
   // Llenar selectores
-  regiones :string[] = [];
-  paises   :PaisSmall[] = [];
+  regiones          : string[]    = [];
+  paises            : PaisSmall[] = [];
+  paisesFronterizos : PaisSmall[]    = [];
 
+  // UI
+  cargando : boolean = false;
 
   guardar() {
     console.log( this.miFormulario );
